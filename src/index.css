@@ -6,6 +6,14 @@
   font-display: swap;
   font-family: "Galano Grotesque Alt";
   font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/GalanoGrotesqueAltRegular.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Galano Grotesque Alt";
+  font-style: normal;
   font-weight: 500;
   src: url("./fonts/GalanoGrotesqueAltMedium.woff2") format("woff2");
 }
@@ -52,4 +60,13 @@ ul:first-of-type li.link.link-hover::before {
 
 .account .link:last-child {
   @apply rounded-[40px] bg-base text-white px-4 min-w-[32px] max-h-10 self-center flex items-center;
+}
+
+.overlay {
+  background-color: rgb(43 43 43 / 0.72);
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  overflow: hidden auto;
+  transition: background-color 300ms cubic-bezier(0, 0, 0.14, 1) 0s;
 }
