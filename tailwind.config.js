@@ -2,6 +2,9 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    screens: {
+      tablet: "992px",
+    },
     extend: {
       fontFamily: {
         base: ["Galano Grotesque Alt", "sans-serif"],
