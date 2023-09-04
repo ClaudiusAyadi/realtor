@@ -1,16 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import menu from "../assets/menu.svg";
+import account from "../assets/account.svg";
 import NavLink from "./NavLink";
 
 export default function Header() {
-  const location = useLocation();
   const navigate = useNavigate();
-
-  function pathMathRoute(route) {
-    if (route === location.pathname) {
-      return true;
-    }
-  }
 
   return (
     <>
@@ -18,10 +13,13 @@ export default function Header() {
         className="bg-white border-b shadow-sm sticky top-0 "
         aria-label="Site Header"
       >
-        <div className="max-w-7xl leading-[50px] mx-auto px-4 flex justify-between items-center h-[50px] text-sm font-medium">
+        <div className="max-w-7xl leading-[50px] mx-auto px-4 flex gap-20 justify-between items-center h-[50px] text-sm font-medium">
+          <span className="md:hidden">
+            <img src={menu} alt="Menu bar" className="cursor-pointer" />
+          </span>
           <img
             src={logo}
-            className="cursor-pointer"
+            className="cursor-pointer lg:-order-1"
             alt="logo"
             tabIndex="0"
             role="link"
@@ -29,7 +27,7 @@ export default function Header() {
             height="46"
             onClick={() => navigate("/")}
           />
-          <nav className="flex gap-20 " aria-label="Main Navigation">
+          <nav className="gap-20 hidden lg:flex" aria-label="Main Navigation">
             <ul
               className="list-none flex gap-2 grow-0"
               aria-label="Customer Links"
@@ -44,7 +42,7 @@ export default function Header() {
             </ul>
 
             <ul
-              className="list-none flex gap-2 manage"
+              className="xl:flex list-none hidden gap-2 manage"
               aria-label="Landlord's Links"
             >
               <NavLink item="Manage Rentals" link="manage" />
