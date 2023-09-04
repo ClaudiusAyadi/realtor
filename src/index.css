@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-display: swap;
+  font-family: "Galano Grotesque Alt";
+  font-style: normal;
+  font-weight: 500;
+  src: url("./fonts/GalanoGrotesqueAltMedium.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Galano Grotesque Alt";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/GalanoGrotesqueAltBold.woff2") format("woff2");
+}
+
+.link {
+  position: relative;
+  cursor: pointer;
+}
+
+ul:first-of-type li.link:hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 100%;
+  border-bottom: 2px solid rgb(43 43 43);
+}
+
+ul:first-of-type li.link.link-hover::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 100%;
+  border-bottom: 2px solid rgb(43 43 43);
+}
+
+.manage > .link {
+  text-decoration: underline;
+}
+.manage > .link:hover {
+  opacity: 0.85;
+}
+
+.account .link:first-child {
+  @apply font-normal;
+}
+
+.account .link:last-child {
+  @apply rounded-[40px] bg-base text-white px-4 min-w-[32px] max-h-10 self-center flex items-center;
+}
