@@ -1,11 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { VscMenu, VscAccount } from "react-icons/vsc";
 import logo from "../assets/logo.svg";
-import menu from "../assets/menu.svg";
-import account from "../assets/account.svg";
 import NavLink from "./NavLink";
+import Login from "../pages/Login";
+import { useState } from "react";
 
 export default function Header() {
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const show = () => {
+    setShowModal(true);
+  };
+
+  const close = () => {
+    setShowModal(false);
+  };
 
   return (
     <>
@@ -13,13 +22,13 @@ export default function Header() {
         className="bg-white border-b shadow-sm sticky top-0 "
         aria-label="Site Header"
       >
-        <div className="max-w-7xl leading-[50px] mx-auto px-4 flex gap-20 justify-between items-center h-[50px] text-sm font-medium">
-          <span className="md:hidden">
-            <img src={menu} alt="Menu bar" className="cursor-pointer" />
+        <div className="max-w-7xl w-full leading-[50px] mx-auto px-4 flex gap-6 justify-between items-center h-[50px] text-sm font-medium">
+          <span className="tablet:hidden">
+            <VscMenu className="min-w-[32px] min-h-[32px] cursor-pointer" />
           </span>
           <img
             src={logo}
-            className="cursor-pointer lg:-order-1"
+            className="cursor-pointer"
             alt="logo"
             tabIndex="0"
             role="link"
@@ -27,7 +36,10 @@ export default function Header() {
             height="46"
             onClick={() => navigate("/")}
           />
-          <nav className="gap-20 hidden lg:flex" aria-label="Main Navigation">
+          <nav
+            className="gap-20 hidden tablet:flex"
+            aria-label="Main Navigation "
+          >
             <ul
               className="list-none flex gap-2 grow-0"
               aria-label="Customer Links"
@@ -50,9 +62,13 @@ export default function Header() {
             </ul>
 
             <ul className="list-none flex gap-2 account" aria-label="Account">
-              <NavLink item="Log in" link="login" />
-              <NavLink item="Sign up" link="signup" />
+              <li onClick={show}>Log in</li>
+              <li onClick={show}>Sign up</li>
+              <Login isVisible={showModal} onClose={close} />
             </ul>
+          </nav>
+          <nav className="tablet:hidden">
+            <VscAccount className="min-w-[32px] min-h-[32px] cursor-pointer" />
           </nav>
         </div>
       </header>

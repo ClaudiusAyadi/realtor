@@ -12,10 +12,7 @@ function Main() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/account" element={<Account />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/offers" element={<Offers />} />
-        <Route path="/signup" element={<Signup />} />
       </Routes>
     </main>
   );

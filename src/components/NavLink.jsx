@@ -1,8 +1,8 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function NavLink({ item, link }) {
   const location = useLocation();
-  const navigate = useNavigate();
 
   function pathMathRoute(route) {
     if (route === location.pathname) {
@@ -11,21 +11,11 @@ function NavLink({ item, link }) {
   }
   const isActive = pathMathRoute(`/${link}`);
 
-  function handleKey(e) {
-    if (e.key === "Enter") {
-      navigate(`/${link}`);
-    }
-  }
-
   return (
-    <li
-      className={`link ${isActive ? "link-hover" : ""}`}
-      tabIndex="0"
-      role="link"
-      onClick={() => navigate(`/${link}`)}
-      onKeyDown={handleKey}
-    >
-      {item}
+    <li>
+      <Link to={`/${link}`} className={`link ${isActive ? "link-hover" : ""}`}>
+        {item}
+      </Link>
     </li>
   );
 }

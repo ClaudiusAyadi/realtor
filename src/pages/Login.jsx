@@ -1,15 +1,36 @@
-import close from "../assets/close.svg";
+import { useState } from "react";
+import { VscChromeClose } from "react-icons/vsc";
+import { FcGoogle } from "react-icons/fc";
 
-export default function Login() {
+export default function Login({ isVisible, onClose }) {
+  const [formData, setFormData] = useState({ email: "" });
+  const { email } = formData;
+
+  function handleInput(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+
+  if (!isVisible) return null;
+
+  function handleClose(e) {
+    if (e.target.id === "overlay") onClose();
+  }
+
   return (
-    <section className="overlay">
-      <div className="max-w-md mx-auto bg-white bg-clip-padding rounded-2xl shadow-md overflow-hidden outline-none px-6 py-4 -mt-[100%]">
-        <div className="flex gap-6 justify-between items-center py-4">
+    <section className="overlay" id="overlay" onClick={handleClose}>
+      <div className="max-w-md mx-auto bg-white bg-clip-padding rounded-2xl shadow-md overflow-hidden outline-none px-6 py-8 mt-12 z-50">
+        <div className="flex gap-6 justify-between items-center mb-8 ">
           <h2 className="text-xl md:text-2xl font-bold">
             Log in or create an account
           </h2>
           <button>
-            <img src={close} alt="Close icon" className="min-w-[24px]" />
+            <VscChromeClose
+              className="min-w-[24px] min-h-[24px] cursor-pointer"
+              onClick={() => onClose()}
+            />
           </button>
         </div>
 
@@ -21,13 +42,20 @@ export default function Login() {
             </div>
             <input
               type="email"
+              value={email}
+              id="email"
               placeholder="Enter your email address"
               required
               className="border border-gray-500 w-full rounded-lg transition-all min-h-[40px] px-4"
+              onChange={handleInput}
             />
           </label>
-          <button className="bg-base text-white font-medium rounded-[40px] h-12 w-full px-6 mt-6 ">
+          <button className="bg-base text-white font-medium rounded-[40px] min-h-[48px] w-full px-6 mt-6 mb-2 hover:opacity-80 transition-all ease-in-out">
             Continue
+          </button>
+          <button className="flex items-center justify-center gap-2 border border-gray-500 font-medium rounded-[40px] min-h-[48px] w-full px-6 hover:bg-base hover:text-white transition-all ease-out">
+            <FcGoogle className="min-w-[32px] min-h-[32px]" />
+            <span>Continue with Google</span>
           </button>
         </form>
       </div>
